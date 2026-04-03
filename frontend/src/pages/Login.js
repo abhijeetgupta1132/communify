@@ -24,7 +24,7 @@ function Login() {
       localStorage.setItem("username", res.data.username);
 
       // ✅ Redirect
-      window.location.href = "/feed";
+      navigate("/feed");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

@@ -9,8 +9,10 @@ function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
 
-    // trigger update in same tab (important fix)
+    // trigger update in same tab
     window.dispatchEvent(new Event("storage"));
+
+    navigate("/login"); // ✅ ADD THIS LINE
   };
 
   return (
