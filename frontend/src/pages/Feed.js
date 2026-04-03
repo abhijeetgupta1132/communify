@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PostCard from "../components/PostCard";
 
-const API = process.env.REACT_APP_API_URL;
+const API = "https://communify-wizt.onrender.com/api";
 const TABS = ["All Post", "Most Liked", "Most Commented"];
 
 function Feed() {
@@ -40,7 +40,7 @@ function Feed() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`${API}/api/posts`);
+      const res = await axios.get(`${API}/posts`);
       setPosts(res.data);
     } catch (err) {
       console.log(err);
@@ -62,7 +62,7 @@ function Feed() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `${API}/api/posts`,
+        `${API}/posts`,
         { text, image },
         {
           headers: { Authorization: `Bearer ${token}` },

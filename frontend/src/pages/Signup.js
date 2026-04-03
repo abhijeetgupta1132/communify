@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_URL;
+const API = "https://communify-wizt.onrender.com/api";
 
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -15,7 +15,7 @@ function Signup() {
   const handleSubmit = async () => {
     setError("");
     try {
-      const res = await axios.post(`${API}/api/auth/signup`, form);
+      const res = await axios.post(`${API}/auth/signup`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
       navigate("/feed");
@@ -29,7 +29,7 @@ function Signup() {
       <div className="auth-box">
         <div className="logo">
           <h2>Communify</h2>
-          <p>Join the community </p>
+          <p>Join the community 🚀</p>
         </div>
         {error && <div className="error">⚠️ {error}</div>}
         <div className="input-group">

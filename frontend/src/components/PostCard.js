@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_URL;
+const API = "https://communify-wizt.onrender.com/api";
 
 function timeAgo(date) {
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -24,9 +24,11 @@ function PostCard({ post, currentUser, onUpdate }) {
   const handleLike = async () => {
     try {
       const res = await axios.put(
-        `${API}/api/posts/${post._id}/like`,
+        `${API}/posts/${post._id}/like`,
         {},
-        { headers: { Authorization: `Bearer ${token}` } },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
       );
       onUpdate(res.data);
     } catch (err) {
@@ -38,7 +40,7 @@ function PostCard({ post, currentUser, onUpdate }) {
     if (!commentText.trim()) return;
     try {
       const res = await axios.post(
-        `${API}/api/posts/${post._id}/comment`,
+        `${API}/posts/${post._id}/comment`,
         { text: commentText },
         { headers: { Authorization: `Bearer ${token}` } },
       );
