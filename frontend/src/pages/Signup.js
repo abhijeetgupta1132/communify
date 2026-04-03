@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API = "http://localhost:5000/api";
+const API = process.env.REACT_APP_API_URL;
 
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
@@ -36,6 +36,7 @@ function Signup() {
           <span className="input-icon">👤</span>
           <input
             name="username"
+            value={form.username}
             placeholder="Username"
             onChange={handleChange}
           />
@@ -44,6 +45,7 @@ function Signup() {
           <span className="input-icon">📧</span>
           <input
             name="email"
+            value={form.email}
             placeholder="Email address"
             type="email"
             onChange={handleChange}
@@ -53,6 +55,7 @@ function Signup() {
           <span className="input-icon">🔒</span>
           <input
             name="password"
+            value={form.password}
             placeholder="Password"
             type="password"
             onChange={handleChange}

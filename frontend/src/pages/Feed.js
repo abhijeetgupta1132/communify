@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PostCard from "../components/PostCard";
 
-const API = "http://localhost:5000/api";
+const API = process.env.REACT_APP_API_URL;
 const TABS = ["All Post", "Most Liked", "Most Commented"];
 
 function Feed() {

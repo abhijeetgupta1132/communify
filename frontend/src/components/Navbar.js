@@ -6,8 +6,11 @@ function Navbar() {
   const username = localStorage.getItem("username");
 
   const logout = () => {
-    localStorage.clear();
-    navigate("/login");
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+
+    // trigger update in same tab (important fix)
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
