@@ -16,6 +16,8 @@ app.get("/", (req, res) => res.json({ message: "Communify API running!" }));
 const MONGO = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5000;
 
+console.log("ENV CHECK:", MONGO);
+
 mongoose
   .connect(MONGO, {
     serverSelectionTimeoutMS: 10000,
