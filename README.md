@@ -4,7 +4,8 @@
 
 ![Communify](https://img.shields.io/badge/Communify-Social%20Platform-667eea?style=for-the-badge&logo=react)
 ![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js)
+![Express](https://img.shields.io/badge/Express-4.18-000000?style=flat-square&logo=express)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb)
 ![Deployed](https://img.shields.io/badge/Deployed-Vercel%20%2B%20Render-black?style=flat-square&logo=vercel)
 
@@ -48,14 +49,15 @@
 
 ### Backend
 
-| Technology          | Purpose               |
-| ------------------- | --------------------- |
-| Node.js + Express 4 | REST API server       |
-| MongoDB + Mongoose  | Database & ODM        |
-| JSON Web Token      | Auth token generation |
-| bcryptjs            | Password hashing      |
-| dotenv              | Environment config    |
-| CORS                | Cross-origin requests |
+| Technology         | Purpose               |
+| ------------------ | --------------------- |
+| Node.js            | Runtime environment   |
+| Express.js 4       | REST API framework    |
+| MongoDB + Mongoose | Database & ODM        |
+| JSON Web Token     | Auth token generation |
+| bcryptjs           | Password hashing      |
+| dotenv             | Environment config    |
+| CORS               | Cross-origin requests |
 
 ### Deployment
 
@@ -112,7 +114,7 @@ Only **2 MongoDB collections** as required:
   "_id": "ObjectId",
   "username": "string (unique)",
   "email": "string (unique)",
-  "password": "string (hashed)",
+  "password": "string (hashed with bcrypt)",
   "createdAt": "Date",
   "updatedAt": "Date"
 }
@@ -146,19 +148,19 @@ Only **2 MongoDB collections** as required:
 
 ### Auth — `/api/auth`
 
-| Method | Endpoint           | Description                    | Auth |
-| ------ | ------------------ | ------------------------------ | ---- |
-| POST   | `/api/auth/signup` | Register new user, returns JWT | ❌   |
-| POST   | `/api/auth/login`  | Login, returns JWT             | ❌   |
+| Method | Endpoint           | Description                    | Auth Required |
+| ------ | ------------------ | ------------------------------ | ------------- |
+| POST   | `/api/auth/signup` | Register new user, returns JWT | ❌            |
+| POST   | `/api/auth/login`  | Login user, returns JWT        | ❌            |
 
 ### Posts — `/api/posts`
 
-| Method | Endpoint                 | Description                  | Auth |
-| ------ | ------------------------ | ---------------------------- | ---- |
-| GET    | `/api/posts`             | Get all posts (newest first) | ❌   |
-| POST   | `/api/posts`             | Create new post              | ✅   |
-| PUT    | `/api/posts/:id/like`    | Like or unlike a post        | ✅   |
-| POST   | `/api/posts/:id/comment` | Add comment to post          | ✅   |
+| Method | Endpoint                 | Description                  | Auth Required |
+| ------ | ------------------------ | ---------------------------- | ------------- |
+| GET    | `/api/posts`             | Get all posts (newest first) | ❌            |
+| POST   | `/api/posts`             | Create new post              | ✅            |
+| PUT    | `/api/posts/:id/like`    | Like or unlike a post        | ✅            |
+| POST   | `/api/posts/:id/comment` | Add comment to post          | ✅            |
 
 ---
 
@@ -249,7 +251,7 @@ npm start
 ## 🎨 UI Highlights
 
 - Animated gradient background on auth pages
-- Glassmorphism card effect
+- Glassmorphism card effect on login/signup
 - Smooth hover animations on all interactive elements
 - Purple gradient theme throughout
 - Toast notifications instead of browser alerts
@@ -280,8 +282,8 @@ npm run build        # Production build
 
 **Abhijeet Gupta**
 
-- Built as part of 3W Full Stack Internship Assignment
-- Tech: React.js + Node.js + MongoDB
+- Built as part of **3W Full Stack Internship Assignment**
+- Tech: React.js + Node.js + Express.js + MongoDB
 
 ---
 
@@ -291,4 +293,4 @@ This project is open source under the [MIT License](LICENSE).
 
 ---
 
-_Built using React, Node.js, Express, and MongoDB_
+_Built using React, Node.js, Express.js, and MongoDB_
