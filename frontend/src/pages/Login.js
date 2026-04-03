@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,11 +9,6 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) navigate("/feed");
-  }, [navigate]);
-
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -23,7 +18,7 @@ function Login() {
       const res = await axios.post(`${API}/auth/login`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
-      navigate("/feed");
+      window.location.href = "/feed";
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const API = "https://communify-wizt.onrender.com/api";
@@ -7,7 +7,6 @@ const API = "https://communify-wizt.onrender.com/api";
 function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,7 +17,7 @@ function Signup() {
       const res = await axios.post(`${API}/auth/signup`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
-      navigate("/feed");
+      window.location.href = "/feed";
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     }
