@@ -15,7 +15,7 @@ function Signup() {
   const handleSubmit = async () => {
     setError("");
     try {
-      const res = await axios.post(`${API}/auth/signup`, form);
+      const res = await axios.post(`${API}/api/auth/signup`, form);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
       navigate("/feed");

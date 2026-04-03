@@ -12,7 +12,7 @@ function CreatePost({ onPostCreated }) {
     const file = e.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onloadend = () => setImage(reader.result); // convert to base64
+    reader.onloadend = () => setImage(reader.result);
     reader.readAsDataURL(file);
   };
 
@@ -22,7 +22,7 @@ function CreatePost({ onPostCreated }) {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `${API}/posts`,
+        `${API}/api/posts`,
         { text, image },
         {
           headers: { Authorization: `Bearer ${token}` },

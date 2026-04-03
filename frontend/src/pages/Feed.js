@@ -40,7 +40,7 @@ function Feed() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get(`${API}/posts`);
+      const res = await axios.get(`${API}/api/posts`);
       setPosts(res.data);
     } catch (err) {
       console.log(err);
@@ -62,7 +62,7 @@ function Feed() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        `${API}/posts`,
+        `${API}/api/posts`,
         { text, image },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -84,7 +84,6 @@ function Feed() {
 
   return (
     <div className="feed-page">
-      {/* Search Bar */}
       <div className="search-bar">
         <span>🔍</span>
         <input
@@ -94,7 +93,6 @@ function Feed() {
         />
       </div>
 
-      {/* Filter Tabs */}
       <div className="filter-tabs">
         {TABS.map((tab) => (
           <button
@@ -107,7 +105,6 @@ function Feed() {
         ))}
       </div>
 
-      {/* Posts */}
       {loading ? (
         <div className="loading">
           <div className="loading-spinner"></div>
@@ -130,12 +127,10 @@ function Feed() {
         ))
       )}
 
-      {/* Floating + Button */}
       <button className="fab" onClick={() => setShowModal(true)}>
         +
       </button>
 
-      {/* Create Post Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>

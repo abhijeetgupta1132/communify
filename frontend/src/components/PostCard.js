@@ -24,7 +24,7 @@ function PostCard({ post, currentUser, onUpdate }) {
   const handleLike = async () => {
     try {
       const res = await axios.put(
-        `${API}/posts/${post._id}/like`,
+        `${API}/api/posts/${post._id}/like`,
         {},
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -38,7 +38,7 @@ function PostCard({ post, currentUser, onUpdate }) {
     if (!commentText.trim()) return;
     try {
       const res = await axios.post(
-        `${API}/posts/${post._id}/comment`,
+        `${API}/api/posts/${post._id}/comment`,
         { text: commentText },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -56,7 +56,6 @@ function PostCard({ post, currentUser, onUpdate }) {
 
   return (
     <div className="post-card">
-      {/* Header */}
       <div className="post-header">
         <div className="post-header-left">
           <div className="avatar">{post.author[0].toUpperCase()}</div>
@@ -73,11 +72,9 @@ function PostCard({ post, currentUser, onUpdate }) {
         )}
       </div>
 
-      {/* Content */}
       {post.text && <p className="post-text">{post.text}</p>}
       {post.image && <img src={post.image} alt="post" className="post-image" />}
 
-      {/* Footer */}
       <div className="post-footer">
         <button
           className={`footer-btn ${isLiked ? "liked" : ""}`}
@@ -96,7 +93,6 @@ function PostCard({ post, currentUser, onUpdate }) {
         </button>
       </div>
 
-      {/* Comments */}
       {showComments && (
         <div className="comments-section">
           {post.comments?.map((c, i) => (
