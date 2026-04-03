@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,13 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // ✅ Redirect if already logged in
+  // ✅ Auto redirect if already logged in
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/feed");
+    }
+  }, [navigate]);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,13 +23,14 @@ function Login() {
   const handleSubmit = async () => {
     setError("");
     try {
-      const res = await axios.post(`${API}/auth/login`, form);
+      // ✅ FIXED API URL
+      const res = await axios.post(`${API}/api/auth/login`, form);
 
       // ✅ Save token + username
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.username);
 
-      // ✅ Redirect
+      // ✅ Redirect after login
       navigate("/feed");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
@@ -44,7 +51,7 @@ function Login() {
           <span className="input-icon">📧</span>
           <input
             name="email"
-            value={form.email} // ✅ FIXED
+            value={form.email}
             placeholder="Email address"
             type="email"
             onChange={handleChange}
@@ -55,7 +62,7 @@ function Login() {
           <span className="input-icon">🔒</span>
           <input
             name="password"
-            value={form.password} // ✅ FIXED
+            value={form.password}
             placeholder="Password"
             type="password"
             onChange={handleChange}
